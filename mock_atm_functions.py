@@ -36,16 +36,47 @@ def init():
 
 def login():
     print("******* Login *******")
-    account_number_from_user = int(input("What is your account number? \n-->"))
-    password = input("What is your password \n--> ")   
-    # account number is the key , user_details is the value -- E choke me small that is why im commenting it
-    for account_number,user_details in database.items():
-        if account_number == account_number_from_user in database:
-            if user_details[3] == password:
-                bank_operation(user_details)
-    print("Invalid account or password")
+    account_number_from_user = input("What is your account number? \n-->")
+    is_valid_account_number = account_number_validation(account_number_from_user)
+    if is_valid_account_number:
+        password = input("What is your password \n--> ")   
+        # account number is the key , user_details is the value -- E choke me small that is why im commenting it
+        for account_number,user_details in database.items():
+            if account_number == int(account_number_from_user) in database:
+                if user_details[3] == password:
+                    bank_operation(user_details)
+    else:
+        init()
     
-    bank_operation(user)
+    
+def account_number_validation(account_number):
+    # checkif account number is not empty
+    # if the account number is 10 digits
+    # if the account number is an integer
+    if account_number:
+        if len(str(account_number)) == 10:
+            #best way to check if account number is an integer is to convert it to integer again
+
+            try:
+                int(account_number)
+                return True
+            except ValueError:
+                print("Invalid Account number, account number shoulc be an integer")
+                return False
+            except TypeError:
+                print("Invalid Account Type")
+                return False
+
+        else:
+            print("Account Number cannot be more than  or less than 10 digits")
+            return False
+    else:
+        print("Account Number is a required Field")
+        return False
+
+def password_validation(password):
+    #learn regex young man for date email ,stron password and other things
+    pass
 
 def register():
     print("****User registration*******")
