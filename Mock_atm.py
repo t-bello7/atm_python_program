@@ -1,4 +1,5 @@
 import datetime
+import auth
 
 userTime = datetime.datetime.now()
 print(userTime)
@@ -6,6 +7,7 @@ print(userTime)
 name = input("What is your name?")
 allowedUsers = ['Seyi','Mike','Love']
 allowedPasswords = ['passwordSeyi', 'passwordMike', 'passwordLove']
+
 
 
 #the code below runs if the name is in the list then if the password is in the list 
